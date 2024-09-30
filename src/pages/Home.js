@@ -5,112 +5,76 @@ function Home() {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="container mx-auto py-8">
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mt-8">
-          {/* Omok Game */}
-          <li className="list-none">
-            <Link
-              to="/omok"
-              className="block border-2 border-green-900 rounded-lg p-4 hover:shadow-2xl hover:scale-105 transform transition duration-300 ease-in-out min-h-[300px] flex flex-col justify-between">
-              <span className="block flex-grow mb-2">
-                <img src="/images/app/omok-thumbnail.png" alt="Omok Thumbnail" className="w-full h-auto rounded" />
-              </span>
-              <span className="block text-center text-lg font-semibold mt-auto">Omok</span>
-            </Link>
-          </li>
-
-          {/* Tic Tac Toe Game */}
-          <li className="list-none">
-            <Link
-              to="/tictactoe"
-              className="block border-2 border-green-900 rounded-lg p-4 hover:shadow-2xl hover:scale-105 transform transition duration-300 ease-in-out min-h-[300px] flex flex-col justify-between">
-              <span className="block flex-grow mb-2">
-                <img
-                  src="/images/app/tictactoe-thumbnail.png"
-                  alt="Tic Tac Toe Thumbnail"
-                  className="w-full h-auto rounded"
-                />
-              </span>
-              <span className="block text-center text-lg font-semibold mt-auto">Tic Tac Toe</span>
-            </Link>
-          </li>
-
-          {/* CatchMind Game */}
-          <li className="list-none">
-            <Link
-              to="/catchMind"
-              className="block border-2 border-green-900 rounded-lg p-4 hover:shadow-2xl hover:scale-105 transform transition duration-300 ease-in-out min-h-[300px] flex flex-col justify-between">
-              <span className="block flex-grow mb-2">
-                <img
-                  src="/images/app/catchMind-thumbnail.png"
-                  alt="CatchMind Thumbnail"
-                  className="w-full h-auto rounded"
-                />
-              </span>
-              <span className="block text-center text-lg font-semibold mt-auto">CatchMind</span>
-            </Link>
-          </li>
-
-          {/* Graph Visualizer */}
-          <li className="list-none">
-            <Link
-              to="/graph-visualizer"
-              className="block border-2 border-green-900 rounded-lg p-4 hover:shadow-2xl hover:scale-105 transform transition duration-300 ease-in-out min-h-[300px] flex flex-col justify-between">
-              <span className="block flex-grow mb-2">
-                <img
-                  src="/images/app/graph-visualizer-thumbnail.png"
-                  alt="Graph Visualizer Thumbnail"
-                  className="w-full h-auto rounded"
-                />
-              </span>
-              <span className="block text-center text-lg font-semibold mt-auto">Graph Visualizer</span>
-            </Link>
-          </li>
-
-          {/* Memory Allocate Simulator */}
-          <li className="list-none">
-            <Link
-              to="/memory-simulator"
-              className="block border-2 border-green-900 rounded-lg p-4 hover:shadow-2xl hover:scale-105 transform transition duration-300 ease-in-out min-h-[300px] flex flex-col justify-between">
-              <span className="block flex-grow mb-2">
-                <img
-                  src="/images/app/memory-simulator-thumbnail.png"
-                  alt="Memory Simulator Thumbnail"
-                  className="w-full h-auto rounded"
-                />
-              </span>
-              <span className="block text-center text-lg font-semibold mt-auto">Memory Simulator</span>
-            </Link>
-          </li>
-
-          {/* Matrix Simulator */}
-          <li className="list-none">
-            <Link
-              to="/memory-simulator"
-              className="block border-2 border-green-900 rounded-lg p-4 hover:shadow-2xl hover:scale-105 transform transition duration-300 ease-in-out min-h-[300px] flex flex-col justify-between">
-              <span className="block flex-grow mb-2">
-                <img
-                  src="/images/app/matrix-simulator-thumbnail.png"
-                  alt="Matrix Simulator Thumbnail"
-                  className="w-full h-auto rounded"
-                />
-              </span>
-              <span className="block text-center text-lg font-semibold mt-auto">Matrix Simulator</span>
-            </Link>
-          </li>
-
-          {/* Matrix Simulator */}
-          <li className="list-none">
-            <Link
-              to="/memory-simulator"
-              className="block border-2 border-green-900 rounded-lg p-4 hover:shadow-2xl hover:scale-105 transform transition duration-300 ease-in-out min-h-[300px] flex flex-col justify-between">
-              <span className="block flex-grow mb-2">
-                <img src="/images/app/ezfuzzy-thumbnail.png" alt="Thumbnail" className="w-full h-auto rounded" />
-              </span>
-              <span className="block text-center text-lg font-semibold mt-auto">Matrix Simulator</span>
-            </Link>
-          </li>
-        </div>{" "}
-        {/* end of item div */}
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mt-8">
+          {/* 각 카드 아이템 */}
+          {[
+            {
+              to: "/tic-tac-toe",
+              img: "/images/app/tictactoe-thumbnail.png",
+              alt: "Tic Tac Toe Thumbnail",
+              title: "Tic Tac Toe",
+            },
+            {
+              to: "/graph-visualizer",
+              img: "/images/app/graph-visualizer-thumbnail.png",
+              alt: "Graph Visualizer Thumbnail",
+              title: "Graph Visualizer",
+            },
+            {
+              to: "/memory-simulator",
+              img: "/images/app/memory-simulator-thumbnail.png",
+              alt: "Memory Simulator Thumbnail",
+              title: "Memory Simulator",
+            },
+            {
+              to: "/matrix-simulator",
+              img: "/images/dummy/ezfz.png",
+              alt: "Matrix Simulator Thumbnail",
+              title: "Matrix Simulator",
+            },
+            {
+              to: "/another-simulator",
+              img: "/images/dummy/ezfz.png",
+              alt: "Another Simulator Thumbnail",
+              title: "Another Simulator",
+            },
+            {
+              to: "/another-simulator",
+              img: "/images/dummy/ezfz.png",
+              alt: "Another Simulator Thumbnail",
+              title: "Another Simulator",
+            },
+            {
+              to: "/another-simulator",
+              img: "/images/dummy/ezfz.png",
+              alt: "Another Simulator Thumbnail",
+              title: "Another Simulator",
+            },
+            {
+              to: "/another-simulator",
+              img: "/images/dummy/ezfz.png",
+              alt: "Another Simulator Thumbnail",
+              title: "Another Simulator",
+            },
+            {
+              to: "/another-simulator",
+              img: "/images/dummy/ezfz.png",
+              alt: "Another Simulator Thumbnail",
+              title: "Another Simulator",
+            },
+          ].map((item, index) => (
+            <li key={index} className="list-none">
+              <Link
+                to={item.to}
+                className="block border-2 border-green-900 rounded-lg p-4 hover:shadow-2xl hover:scale-105 transform transition duration-300 ease-in-out h-[300px] flex flex-col justify-between">
+                <span className="block flex-grow mb-2 h-[200px] overflow-hidden">
+                  <img src={item.img} alt={item.alt} className="w-full h-full object-cover rounded" />
+                </span>
+                <span className="block text-center text-lg font-semibold mt-auto">{item.title}</span>
+              </Link>
+            </li>
+          ))}
+        </div>
       </div>
     </div>
   )

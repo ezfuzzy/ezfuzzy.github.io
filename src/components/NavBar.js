@@ -35,7 +35,7 @@ function NavBar() {
     } else {
       console.error("Bookmark container not found")
     }
-    alert("컨트롤 + D를 눌러 즐겨찾기를 추가해주세요. api가 막혀버렸어요")
+    alert("컨트롤 + D를 눌러 즐겨찾기를 추가해주세요 :)")
   }
 
   return (
