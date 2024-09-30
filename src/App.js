@@ -6,9 +6,9 @@ function App() {
   const currentOutlet = useOutlet()
 
   return (
-    <div className="app-container">
+    <div className="flex flex-col min-h-screen">
       <NavBar />
-      <div className="main-content">{currentOutlet}</div>
+      <main className="flex-grow">{currentOutlet}</main>
       <Footer />
     </div>
   )
