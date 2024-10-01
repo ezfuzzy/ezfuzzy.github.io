@@ -111,7 +111,7 @@ const KakaoMap = () => {
 
   return (
     <div className="flex h-screen bg-gray-100 p-6 space-x-6">
-      <div className="w-1/3 space-y-6">
+      <div className="w-1/4 space-y-6">
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h1 className="text-2xl font-bold mb-4">카카오 지도</h1>
           <div className="space-y-4">
@@ -219,6 +219,11 @@ const KakaoMap = () => {
             </div>
           </div>
         </div>
+        <div className="flex justify-end">
+          <button onClick={addDay} className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded">
+            Day 추가
+          </button>
+        </div>
       </div>
 
       <div className="flex-1 space-y-6 overflow-auto">
@@ -294,15 +299,12 @@ const KakaoMap = () => {
             </div>
           ))}
         </div>
-        <button onClick={addDay} className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded">
-          Day 추가
-        </button>
       </div>
 
       {/* 모달 팝업 */}
       {isSelectPlace && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 max-w-6xl">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" onClick={() => setIsSelectPlace(false)}>
+          <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 max-w-6xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold">장소 선택</h2>
               <button
