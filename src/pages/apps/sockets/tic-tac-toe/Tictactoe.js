@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useCallback } from "react"
 // import { io } from "socket.io-client";
 
@@ -137,8 +138,9 @@ const TicTacToe = () => {
   return (
     <div className="tictactoe-container flex flex-col items-center p-6 bg-gray-100 min-h-screen">
       <h1 id="title" className="text-4xl font-bold mb-6">
-        Tic Tac Toe (추후 서버 마련해서 구현 예정)
+        Tic Tac Toe
       </h1>
+      <h2 className="">(추후 서버 마련해서 추가 예정 - 코드는 되어있음)</h2>
       <div className="board-container border-green-800" id="board-container">
         <table className="board border-3 border-collapse">
           <tbody>

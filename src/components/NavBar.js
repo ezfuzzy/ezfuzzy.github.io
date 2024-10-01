@@ -82,9 +82,9 @@ function NavBar() {
               </li>
               <li>
                 <Link
-                  to="/projects"
+                  to="/career"
                   className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
-                  Projects
+                  ezfuzzy's info
                 </Link>
               </li>
               <li>
@@ -155,28 +155,31 @@ function NavBar() {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/blog"
-                  className="font-bold text-gray-600 hover:text-gray-800 transition duration-300"
-                  onClick={toggleSideMenu}>
+                <a
+                  href="https://velog.io/@fuzzy/posts"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
                   Blog
-                </Link>
+                </a>
               </li>
               <li>
                 <Link
-                  to="/projects"
+                  to="/career"
                   className="font-bold text-gray-600 hover:text-gray-800 transition duration-300"
                   onClick={toggleSideMenu}>
-                  Projects
+                  ezfuzzy's career
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/contact"
-                  className="text-gray-600 hover:text-gray-800 transition duration-300"
-                  onClick={toggleSideMenu}>
+                <button
+                  className="font-bold text-gray-600 hover:text-gray-800 transition duration-300"
+                  onClick={() => {
+                    toggleSideMenu()
+                    toggleContact()
+                  }}>
                   Contact
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
