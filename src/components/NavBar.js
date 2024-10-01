@@ -84,7 +84,7 @@ function NavBar() {
                 <Link
                   to="/career"
                   className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
-                  ezfuzzy's info
+                  ezfuzzy's career
                 </Link>
               </li>
               <li>

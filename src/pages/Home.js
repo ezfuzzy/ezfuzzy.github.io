@@ -34,7 +34,7 @@ function Home() {
             },
             {
               to: "/kakao-map",
-              img: "/images/app/kakao-map-thumbnail.png",
+              img: "/images/app/Kakao-map-thumbnail.png",
               alt: "Kakao Map Thumbnail",
               title: "Kakao Map",
             },
