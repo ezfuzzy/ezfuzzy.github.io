@@ -8,6 +8,7 @@ const projectsData = [
     title: "tripDuo - 같이갈래",
     period: "2024.08 ~ 2024.10",
     link: "https://github.com/ezfuzzy/tripDuo",
+    image: "/images/projects/tripDuo-logo.png",
     description: "여행 메이트를 구하거나 여행에 대한 정보를 공유하는 서비스",
     technologies: ["Spring", "React", "PostgreSQL"],
     details:
@@ -18,6 +19,7 @@ const projectsData = [
     title: "ezfuzzy's website",
     period: "2024.05 ~ ",
     link: "https://ezfuzzy.github.io",
+    image: "/images/logos/ezfuzzy-main.png",
     description: "개인 웹사이트 제작",
     technologies: ["React", "Tailwind CSS"],
     details: `
@@ -240,32 +242,29 @@ const Career = () => {
             className="mb-4 p-2 border border-gray-300 rounded w-full"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredProjects
-              .filter((project) =>
-                project.technologies.some((tech) => tech.toLowerCase().includes(filter.toLowerCase()))
-              )
-              .map((project) => (
-                <div
-                  key={project.id}
-                  className="bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-                  onClick={() => openProjectDetails(project)}>
-                  <div className="p-4 border-b">
-                    <h2 className="text-xl font-semibold">{project.title}</h2>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-sm text-gray-600 mb-2">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+            {filteredProjects.map((project) => (
+              <div
+                key={project.id}
+                className="bg-white border border-green-900 rounded-2xl hover:shadow-2xl hover:scale-105 transform transition ease-in-out duration-300 cursor-pointer w-full"
+                onClick={() => openProjectDetails(project)}>
+                <div className="p-4 border-b">
+                  <h2 className="text-xl font-semibold">{project.title}</h2>
+                </div>
+                <div className="p-4">
+                  <img src={project.image} alt={project.title} className="w-full object-cover mb-4 rounded" />
+                  <p className="text-sm text-gray-600 mb-2">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
 
           {selectedProject && (
@@ -282,6 +281,11 @@ const Career = () => {
                 </div>
 
                 <div>
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full object-cover mb-4 rounded"
+                  />
                   <p className="mb-2">{selectedProject.description}</p>
                   <h3 className="text-lg font-semibold mb-2">기술 스택:</h3>
                   <div className="flex flex-wrap gap-2 mb-4">
