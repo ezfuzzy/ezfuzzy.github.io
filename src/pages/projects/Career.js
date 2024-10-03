@@ -84,7 +84,22 @@ const Career = () => {
         </div>
         <div className="mb-6">
           <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
-          <p className="text-gray-700">저는 백엔드 개발자 김민준입니다.</p>
+          <p className="text-gray-700">
+            백엔드 개발자 김민준(ezfuzzy)입니다. 저는 개발하면서 작성한 로직을 어떻게 최적화할지 고민하는 것을
+            좋아합니다.
+            <br />
+            <span className="font-semibold">Java</span>와 <span className="font-semibold">Spring Boot</span>를 사용하여
+            프로젝트를 구성해보았고,{" "}
+            <span className="font-semibold">React</span>를 프론트엔드로 하여 프로젝트를 진행했습니다.
+            <br />
+            또한 <span className="font-semibold">PostgreSQL</span>과 같은 RDBMS뿐만 아니라{" "}
+            <span className="font-semibold">AWS</span>, <span className="font-semibold">Docker</span>와 같은 클라우드 및
+            컨테이너 기술에 대한 이해를 바탕으로 배포와 운영에 대한 최적화에도 신경을 쓰고 있습니다.
+            <br />
+            항상 새로운 기술을 탐구하고, 사용자 경험을 향상시키는 개발에 도전하는 것을 즐기며, 프로젝트에서 팀원들과
+            협업하여 성공적인 결과를 이끌어 내는 것에 관심이 많습니다.
+            <br />더 나은 서비스을 만들고, 더 많은 사람들에게 가치를 제공하기 위해 계속해서 성장하고있습니다.
+          </p>
         </div>
         <div className="mb-6">
           <h2 className="text-2xl font-semibold mb-4">Skills</h2>
