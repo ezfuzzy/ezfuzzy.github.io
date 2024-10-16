@@ -1,9 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 function NavBar() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
   const [isContactOpen, setIsContactOpen] = useState(false)
+  const [contactPosition, setContactPosition] = useState({ top: "50%", left: "50%" })
+  const [mouseOverCount, setMouseOverCount] = useState(0)
 
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen)
@@ -37,6 +39,26 @@ function NavBar() {
     }
     alert("컨트롤 + D를 눌러 즐겨찾기를 추가해주세요 :)")
   }
+
+  useEffect(() => {
+    if (isContactOpen) {
+      const contactElement = document.getElementById("contact-element")
+      const handleMouseOver = () => {
+        setMouseOverCount((prevCount) => prevCount + 1)
+        if (mouseOverCount < 5) {
+          const randomTop = Math.floor(Math.random() * 80) + 10 + "%"
+          const randomLeft = Math.floor(Math.random() * 80) + 10 + "%"
+          setContactPosition({ top: randomTop, left: randomLeft })
+        } else {
+          contactElement.removeEventListener("mouseover", handleMouseOver)
+        }
+      }
+      contactElement.addEventListener("mouseover", handleMouseOver)
+      return () => {
+        contactElement.removeEventListener("mouseover", handleMouseOver)
+      }
+    }
+  }, [isContactOpen, mouseOverCount])
 
   return (
     <>
@@ -187,51 +209,54 @@ function NavBar() {
       </div>
 
       {/* Contact 요소 오버레이 */}
-      <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out ${
-          isContactOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={toggleContact}></div>
+      {isContactOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out"
+          onClick={toggleContact}></div>
+      )}
 
       {/* Contact 요소 */}
-      <div
-        className={`fixed inset-0 flex items-center justify-center p-4 z-50 transition-transform duration-300 ease-in-out max-w-sm mx-auto font-bold ${
-          isContactOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-        }`}>
+      {isContactOpen && (
         <div
-          className="bg-gradient-to-r from-green-700 via-green-500 to-green-300 p-6 rounded-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-125"
-          onClick={(e) => e.stopPropagation()}>
-          <ul className="space-y-4">
-            <li>
-              <a
-                href="mailto:ezfuzzy052@gmail.com"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-black hover:border-b-2 hover:border-white transition duration-300">
-                Email: ezfuzzy052@gmail.com
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/%EB%AF%BC%EC%A4%80-%EA%B9%80-92a27a32a/"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-black hover:border-b-2 hover:border-white transition duration-300">
-                LinkedIn: ezfuzzy's LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/ezfuzzy"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-black hover:border-b-2 hover:border-white transition duration-300">
-                GitHub: https://github.com/ezfuzzy
-              </a>
-            </li>
-          </ul>
+          id="contact-element"
+          className="fixed flex items-center justify-center p-4 z-50 transition-transform duration-300 ease-in-out max-w-sm mx-auto font-bold"
+          style={{ top: contactPosition.top, left: contactPosition.left }}
+          onClick={toggleContact}>
+          <div
+            className="bg-gradient-to-r from-green-700 via-green-500 to-green-300 p-6 rounded-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-125"
+            onClick={(e) => e.stopPropagation()}>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="mailto:ezfuzzy052@gmail.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="text-black hover:border-b-2 hover:border-white transition duration-300">
+                  Email: ezfuzzy052@gmail.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/%EB%AF%BC%EC%A4%80-%EA%B9%80-92a27a32a/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="text-black hover:border-b-2 hover:border-white transition duration-300">
+                  LinkedIn: ezfuzzy's LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/ezfuzzy"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="text-black hover:border-b-2 hover:border-white transition duration-300">
+                  GitHub: https://github.com/ezfuzzy
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
