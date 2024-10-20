@@ -1,13 +1,14 @@
 import React, { useState } from "react"
 import { X } from "lucide-react"
 
-// 가상의 프로젝트 데이터
 const projectsData = [
   {
     id: 1,
     title: "tripDuo - 같이갈래",
     period: "2024.08 ~ 2024.10",
-    link: "https://github.com/ezfuzzy/tripDuo",
+    link1: "https://github.com/ezfuzzy/tripDuo",
+    link2: "https://tripduo.xyz",
+    pdf: "",
     image: "/images/projects/tripDuo-logo.png",
     description: "여행 메이트를 구하거나 여행에 대한 정보를 공유하는 서비스",
     technologies: ["Spring", "React", "PostgreSQL"],
@@ -18,7 +19,7 @@ const projectsData = [
     id: 2,
     title: "ezfuzzy's website",
     period: "2024.05 ~ ",
-    link: "https://ezfuzzy.github.io",
+    link1: "https://ezfuzzy.github.io",
     image: "/images/logos/ezfuzzy-main.png",
     description: "개인 웹사이트 제작",
     technologies: ["React", "Tailwind CSS"],
@@ -31,7 +32,7 @@ const projectsData = [
     id: 3,
     title: "KBO app (계획중)",
     period: "2024.10 ~ ",
-    link: "https://github.com/ezfuzzy/kboApp",
+    link1: "https://github.com/ezfuzzy/kboApp",
     description: "KBO 각종 정보 앱",
     technologies: ["Spring", "React-native", "PostgreSQL"],
     details: "KBO와 관련된 정보를 보여주는 앱입니다.",
@@ -89,12 +90,13 @@ const Career = () => {
             좋아합니다.
             <br />
             <span className="font-semibold">Java</span>와 <span className="font-semibold">Spring Boot</span>를 사용하여
-            프로젝트를 구성해보았고,{" "}
-            <span className="font-semibold">React</span>를 프론트엔드로 하여 프로젝트를 진행했습니다.
+            프로젝트를 구성해보았고, <span className="font-semibold">React</span>를 프론트엔드로 하여 프로젝트를
+            진행했습니다.
             <br />
             또한 <span className="font-semibold">PostgreSQL</span>과 같은 RDBMS뿐만 아니라{" "}
             <span className="font-semibold">AWS</span>, <span className="font-semibold">Docker</span>와 같은 클라우드 및
-            컨테이너 기술에 대한 이해를 바탕으로 배포와 운영에 대한 최적화에도 신경을 쓰고 있습니다.
+            컨테이너 기술에 대한 이해를 바탕으로 배포와 운영에 대한 최적화에도 신경을 쓰고 있습니다. <br />
+            AWS는 Redis를 통한 DB 접근에 대한 최적화를 하였고, <span className="font-semibold">Github Actions</span>를 통해 CI/CD를 구축했습니다.
             <br />
             항상 새로운 기술을 탐구하고, 사용자 경험을 향상시키는 개발에 도전하는 것을 즐기며, 프로젝트에서 팀원들과
             협업하여 성공적인 결과를 이끌어 내는 것에 관심이 많습니다.
@@ -312,16 +314,27 @@ const Career = () => {
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">
-                    상세 정보:{" "}
-                    <a
-                      href={selectedProject.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font text-blue-500 ">
-                      [{selectedProject.title}]
-                    </a>
-                  </h3>
+                  <h3 className="text-lg font-semibold mb-2">상세 정보:</h3>
+                  <span>Github : </span>
+                  <a
+                    href={selectedProject.link1}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font text-blue-700 mb-2">
+                    [{selectedProject.title}]
+                  </a>
+                  {selectedProject.link2 && (
+                    <div className="mb-2">
+                      <span>Site: </span>
+                      <a
+                        href={selectedProject.link2}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font text-blue-700">
+                        {selectedProject.link2}
+                      </a>
+                    </div>
+                  )}
                   <p>{selectedProject.details}</p>
                 </div>
               </div>
