@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { appList } from "../constants/mapping"
 
 function Home() {
   return (
@@ -7,62 +8,7 @@ function Home() {
       <div className="container mx-auto py-8">
         <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mt-8">
           {/* 각 카드 아이템 */}
-          {[
-            {
-              to: "/tic-tac-toe",
-              img: "/images/app/tictactoe-thumbnail.png",
-              alt: "Tic Tac Toe Thumbnail",
-              title: "Tic Tac Toe(X)",
-            },
-            {
-              to: "/graph-visualizer",
-              img: "/images/app/graph-visualizer-thumbnail.png",
-              alt: "Graph Visualizer Thumbnail",
-              title: "Graph Visualizer",
-            },
-            {
-              to: "/memory-simulator",
-              img: "/images/app/memory-simulator-thumbnail.png",
-              alt: "Memory Simulator Thumbnail",
-              title: "Memory Simulator",
-            },
-            {
-              to: "/matrix-simulator",
-              img: "/images/dummy/ezfz.png",
-              alt: "Matrix Simulator Thumbnail",
-              title: "Matrix Simulator",
-            },
-            {
-              to: "/kakao-map",
-              img: "/images/app/Kakao-map-thumbnail.png",
-              alt: "Kakao Map Thumbnail",
-              title: "Kakao Map",
-            },
-            {
-              to: "/another-simulator",
-              img: "/images/dummy/ezfz.png",
-              alt: "Another Simulator Thumbnail",
-              title: "Another Simulator",
-            },
-            {
-              to: "/another-simulator",
-              img: "/images/dummy/ezfz.png",
-              alt: "Another Simulator Thumbnail",
-              title: "Another Simulator",
-            },
-            {
-              to: "/another-simulator",
-              img: "/images/dummy/ezfz.png",
-              alt: "Another Simulator Thumbnail",
-              title: "Another Simulator",
-            },
-            {
-              to: "/another-simulator",
-              img: "/images/dummy/ezfz.png",
-              alt: "Another Simulator Thumbnail",
-              title: "Another Simulator",
-            },
-          ].map((item, index) => (
+          {appList.map((item, index) => (
             <li key={index} className="list-none">
               <Link
                 to={item.to}

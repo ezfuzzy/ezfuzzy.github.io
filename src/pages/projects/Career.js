@@ -1,61 +1,19 @@
 import React, { useState } from "react"
 import { X } from "lucide-react"
-
-const projectsData = [
-  {
-    id: 1,
-    title: "tripDuo - 같이갈래",
-    period: "2024.08 ~ 2024.10",
-    link1: "https://github.com/ezfuzzy/tripDuo",
-    link2: "https://tripduo.xyz",
-    pdf: "",
-    image: "/images/projects/tripDuo-logo.png",
-    description: "여행 메이트를 구하거나 여행에 대한 정보를 공유하는 서비스",
-    technologies: ["Spring", "React", "PostgreSQL"],
-    details:
-      "tripDuo는 여행 메이트를 구하거나 여행에 대한 정보를 공유하는 서비스입니다. 사용자는 여행 계획을 공유하고, 메이트를 구하며, 여행 정보를 쉽게 찾을 수 있습니다.",
-  },
-  {
-    id: 2,
-    title: "ezfuzzy's website",
-    period: "2024.05 ~ ",
-    link1: "https://ezfuzzy.github.io",
-    image: "/images/logos/ezfuzzy-main.png",
-    description: "개인 웹사이트 제작",
-    technologies: ["React", "Tailwind CSS"],
-    details: `
-      저의 작업물과 기술 스택을 보여주기 위한 반응형 웹사이트입니다.
-      프로젝트를 진행할때 관심이 생긴 부분이나 중간에 있으면 좋겠다 싶은 미니 앱들을 하나씩 만들어서 넣는 중 입니다.
-      `,
-  },
-  {
-    id: 3,
-    title: "KBO app (계획중)",
-    period: "2024.10 ~ ",
-    link1: "https://github.com/ezfuzzy/kboApp",
-    description: "KBO 각종 정보 앱",
-    technologies: ["Spring", "React-native", "PostgreSQL"],
-    details: "KBO와 관련된 정보를 보여주는 앱입니다.",
-  },
-]
+import { myLinkList, projectList, skillList } from "../../constants/mapping"
 
 const Career = () => {
   const [filter, setFilter] = useState("")
   const [selectedProject, setSelectedProject] = useState(null)
 
-  const filteredProjects = projectsData.filter(
+  const filteredProjects = projectList.filter(
     (project) =>
       project.title.toLowerCase().includes(filter.toLowerCase()) ||
       project.technologies.some((tech) => tech.toLowerCase().includes(filter.toLowerCase()))
   )
 
-  const openProjectDetails = (project) => {
-    setSelectedProject(project)
-  }
-
-  const closeProjectDetails = () => {
-    setSelectedProject(null)
-  }
+  const openProjectDetails = (project) => setSelectedProject(project)
+  const closeProjectDetails = () => setSelectedProject(null)
 
   return (
     <div>
@@ -64,23 +22,11 @@ const Career = () => {
         <div className="mb-6">
           <h2 className="text-2xl font-semibold mb-4">Links</h2>
           <div className="flex space-x-4">
-            <a href="https://github.com/ezfuzzy" target="_blank" rel="noopener noreferrer">
-              <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub" className="w-12 h-12" />
-            </a>
-            <a href="https://www.linkedin.com/in/ezfuzzy/" target="_blank" rel="noopener noreferrer">
-              <img
-                src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"
-                alt="LinkedIn"
-                className="w-12 h-12"
-              />
-            </a>
-            <a href="https://velog.io/@fuzzy" target="_blank" rel="noopener noreferrer">
-              <img
-                src="https://cdn.icon-icons.com/icons2/3915/PNG/512/velog_logo_icon_249278.png"
-                alt="Velog"
-                className="w-12 h-12"
-              />
-            </a>
+            {myLinkList.map(({ href, alt, src }) => (
+              <a key={alt} href={href} target="_blank" rel="noopener noreferrer">
+                <img src={src} alt={alt} className="w-12 h-12" />
+              </a>
+            ))}
           </div>
         </div>
         <div className="mb-6">
@@ -96,144 +42,33 @@ const Career = () => {
             또한 <span className="font-semibold">PostgreSQL</span>과 같은 RDBMS뿐만 아니라{" "}
             <span className="font-semibold">AWS</span>, <span className="font-semibold">Docker</span>와 같은 클라우드 및
             컨테이너 기술에 대한 이해를 바탕으로 배포와 운영에 대한 최적화에도 신경을 쓰고 있습니다. <br />
-            AWS는 Redis를 통한 DB 접근에 대한 최적화를 하였고, <span className="font-semibold">Github Actions</span>를 통해 CI/CD를 구축했습니다.
+            AWS는 Redis를 통한 DB 접근에 대한 최적화를 하였고, <span className="font-semibold">Github Actions</span>를
+            통해 CI/CD를 구축했습니다.
             <br />
             항상 새로운 기술을 탐구하고, 사용자 경험을 향상시키는 개발에 도전하는 것을 즐기며, 프로젝트에서 팀원들과
             협업하여 성공적인 결과를 이끌어 내는 것에 관심이 많습니다.
-            <br />더 나은 서비스을 만들고, 더 많은 사람들에게 가치를 제공하기 위해 계속해서 성장하고있습니다.
+            <br />더 나은 서비스를 만들고, 더 많은 사람들에게 가치를 제공하기 위해 계속해서 성장하고 있습니다.
           </p>
         </div>
         <div className="mb-6">
           <h2 className="text-2xl font-semibold mb-4">Skills</h2>
           <ul className="list-disc list-inside space-y-2">
-            <li>
-              <span className="font-semibold">Programming Languages:</span>
-              <span className="flex items-center space-x-2 mt-2">
-                <img
-                  src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png"
-                  alt="Java"
-                  className="w-12 h-12"
-                  title="Java"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/javascript.png"
-                  alt="JavaScript"
-                  className="w-12 h-12"
-                  title="JavaScript"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/c-plus-plus-logo.png"
-                  alt="C++"
-                  className="w-12 h-12"
-                  title="C++"
-                />
-              </span>
-            </li>
-            <li>
-              <span className="font-semibold">Frameworks:</span>
-              <span className="flex items-center space-x-2 mt-2">
-                <img
-                  src="https://img.icons8.com/color/48/000000/spring-logo.png"
-                  alt="Spring Boot"
-                  className="w-12 h-12"
-                  title="Spring Boot"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/react-native.png"
-                  alt="React"
-                  className="w-12 h-12"
-                  title="React"
-                />
-              </span>
-            </li>
-            <li>
-              <span className="font-semibold">Databases:</span>
-              <span className="flex items-center space-x-2 mt-2">
-                <img
-                  src="https://img.icons8.com/color/48/000000/postgreesql.png"
-                  alt="PostgreSQL"
-                  className="w-12 h-12"
-                  title="PostgreSQL"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/oracle-logo.png"
-                  alt="Oracle"
-                  className="w-12 h-12"
-                  title="Oracle"
-                />
-              </span>
-            </li>
-            <li>
-              <span className="font-semibold">APIs:</span>
-              <span className="flex items-center space-x-2 mt-2">
-                <img
-                  src="https://img.icons8.com/?size=256w&id=345&format=png"
-                  alt="Map API"
-                  className="w-12 h-12"
-                  title="Map API"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/sms.png"
-                  alt="SMS API"
-                  className="w-12 h-12"
-                  title="SMS API"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/email.png"
-                  alt="Email API"
-                  className="w-12 h-12"
-                  title="Email API"
-                />
-                <img
-                  src="https://static-00.iconduck.com/assets.00/websocket-icon-512x384-sm7dfowk.png"
-                  alt="WebSocket"
-                  className="w-12 h-10"
-                  title="WebSocket"
-                />
-              </span>
-            </li>
-            <li>
-              <span className="font-semibold">Tools:</span>
-              <span className="flex items-center space-x-2 mt-2">
-                <img
-                  src="https://img.icons8.com/color/48/000000/intellij-idea.png"
-                  alt="IntelliJ"
-                  className="w-12 h-12"
-                  title="IntelliJ"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/eclipse.png"
-                  alt="Eclipse"
-                  className="w-12 h-12"
-                  title="Eclipse"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"
-                  alt="VSCode"
-                  className="w-12 h-12"
-                  title="VSCode"
-                />
-                <img
-                  src="https://global.discourse-cdn.com/business7/uploads/cursor1/original/2X/a/a4f78589d63edd61a2843306f8e11bad9590f0ca.png"
-                  alt="Cursor AI"
-                  className="w-12 h-12"
-                  title="Cursor AI"
-                />
-                <img src="https://img.icons8.com/color/48/000000/git.png" alt="Git" className="w-12 h-12" title="Git" />
-                <img
-                  src="https://img.icons8.com/color/48/000000/amazon-web-services.png"
-                  alt="AWS"
-                  className="w-12 h-12"
-                  title="AWS"
-                />
-                <img
-                  src="https://img.icons8.com/color/48/000000/docker.png"
-                  alt="Docker"
-                  className="w-12 h-12"
-                  title="Docker"
-                />
-              </span>
-            </li>
+            {Object.entries(skillList).map(([category, items]) => (
+              <li key={category}>
+                <span className="font-semibold">{category.charAt(0).toUpperCase() + category.slice(1)}:</span>
+                <span className="flex items-center space-x-2 mt-2">
+                  {items.map((item) => (
+                    <img
+                      key={item.alt}
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-12 h-12"
+                      title={item.title}
+                    />
+                  ))}
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="mb-6">

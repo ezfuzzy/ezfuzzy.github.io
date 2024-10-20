@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { myContactList } from "../constants/mapping"
 
 function NavBar() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
   const [isContactOpen, setIsContactOpen] = useState(false)
   const [contactPosition, setContactPosition] = useState({ top: "50%", left: "50%" })
+  // eslint-disable-next-line no-unused-vars
   const [mouseOverCount, setMouseOverCount] = useState(0)
 
-  const toggleSideMenu = () => {
-    setIsSideMenuOpen(!isSideMenuOpen)
-  }
-
-  const toggleContact = () => {
-    setIsContactOpen(!isContactOpen)
-  }
+  const toggleSideMenu = () => setIsSideMenuOpen((prev) => !prev)
+  const toggleContact = () => setIsContactOpen((prev) => !prev)
 
   const handleBookmark = () => {
     const bookmarkContainer = document.getElementById("bookmark-container")
@@ -30,7 +27,6 @@ function NavBar() {
           "d",
           "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.97a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.392 2.46a1 1 0 00-.364 1.118l1.286 3.97c.3.921-.755 1.688-1.54 1.118l-3.392-2.46a1 1 0 00-1.176 0l-3.392 2.46c-.784.57-1.84-.197-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.049 9.397c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.97z"
         )
-
         newStar.appendChild(path)
         bookmarkContainer.appendChild(newStar)
       }
@@ -44,28 +40,28 @@ function NavBar() {
     if (isContactOpen) {
       const contactElement = document.getElementById("contact-element")
       const handleMouseOver = () => {
-        setMouseOverCount((prevCount) => prevCount + 1)
-        if (mouseOverCount < 5) {
-          const randomTop = Math.floor(Math.random() * 80) + 10 + "%"
-          const randomLeft = Math.floor(Math.random() * 80) + 10 + "%"
-          setContactPosition({ top: randomTop, left: randomLeft })
-        } else {
-          contactElement.removeEventListener("mouseover", handleMouseOver)
-        }
+        setMouseOverCount((prevCount) => {
+          if (prevCount < 5) {
+            const randomTop = `${Math.floor(Math.random() * 80) + 10}%`
+            const randomLeft = `${Math.floor(Math.random() * 80) + 10}%`
+            setContactPosition({ top: randomTop, left: randomLeft })
+            return prevCount + 1
+          } else {
+            contactElement.removeEventListener("mouseover", handleMouseOver)
+            return prevCount
+          }
+        })
       }
       contactElement.addEventListener("mouseover", handleMouseOver)
-      return () => {
-        contactElement.removeEventListener("mouseover", handleMouseOver)
-      }
+      return () => contactElement.removeEventListener("mouseover", handleMouseOver)
     }
-  }, [isContactOpen, mouseOverCount])
+  }, [isContactOpen])
 
   return (
     <>
       <div className="bg-white shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center pt-4 pb-2">
-            {/* 좌측 상단 별모양 아이콘과 즐겨찾기 버튼 */}
             <div className="flex items-center space-x-4">
               <div id="bookmark-container" className="flex items-center space-x-2">
                 <svg
@@ -84,31 +80,26 @@ function NavBar() {
               </div>
             </div>
 
-            {/* 데스크톱 메뉴 */}
             <ul className="hidden md:flex space-x-8">
-              <li>
-                <Link
-                  to="/"
-                  className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://velog.io/@fuzzy/posts"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <Link
-                  to="/career"
-                  className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
-                  ezfuzzy's career
-                </Link>
-              </li>
+              {["/", "https://velog.io/@fuzzy/posts", "/career"].map((link, index) => (
+                <li key={index}>
+                  {link.startsWith("http") ? (
+                    <a
+                      href={link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
+                      {index === 0 ? "Home" : index === 1 ? "Blog" : "ezfuzzy's career"}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link}
+                      className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
+                      {index === 0 ? "Home" : "ezfuzzy's career"}
+                    </Link>
+                  )}
+                </li>
+              ))}
               <li>
                 <button
                   className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300"
@@ -120,7 +111,6 @@ function NavBar() {
           </div>
           <div className="mt-1 h-px bg-gray-200"></div>
           <div className="flex justify-between items-center py-4">
-            {/* 좌측 햄버거 버튼 */}
             <button
               className="text-gray-500 hover:text-gray-700 focus:outline-none transition duration-300 ease-in-out transform hover:scale-150"
               onClick={toggleSideMenu}>
@@ -142,14 +132,12 @@ function NavBar() {
           </div>
         </div>
 
-        {/* 사이드 메뉴 오버레이 */}
         <div
           className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out ${
             isSideMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
           onClick={toggleSideMenu}></div>
 
-        {/* 사이드 메뉴 */}
         <div
           className={`fixed top-0 left-0 w-64 h-full bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
             isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
@@ -168,31 +156,27 @@ function NavBar() {
               </svg>
             </button>
             <ul className="flex flex-col space-y-6 mt-8">
-              <li>
-                <Link
-                  to="/"
-                  className="font-bold text-gray-600 hover:text-gray-800 transition duration-300"
-                  onClick={toggleSideMenu}>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://velog.io/@fuzzy/posts"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="font-bold text-gray-600 hover:text-blue-800 hover:border-b-2 hover:border-blue-800 transition duration-300">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <Link
-                  to="/career"
-                  className="font-bold text-gray-600 hover:text-gray-800 transition duration-300"
-                  onClick={toggleSideMenu}>
-                  ezfuzzy's career
-                </Link>
-              </li>
+              {["/", "https://velog.io/@fuzzy/posts", "/career"].map((link, index) => (
+                <li key={index}>
+                  {link.startsWith("http") ? (
+                    <a
+                      href={link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="font-bold text-gray-600 hover:text-gray-800 transition duration-300"
+                      onClick={toggleSideMenu}>
+                      {index === 0 ? "Home" : "Blog"}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link}
+                      className="font-bold text-gray-600 hover:text-gray-800 transition duration-300"
+                      onClick={toggleSideMenu}>
+                      {index === 0 ? "Home" : "ezfuzzy's career"}
+                    </Link>
+                  )}
+                </li>
+              ))}
               <li>
                 <button
                   className="font-bold text-gray-600 hover:text-gray-800 transition duration-300"
@@ -208,54 +192,35 @@ function NavBar() {
         </div>
       </div>
 
-      {/* Contact 요소 오버레이 */}
       {isContactOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out"
-          onClick={toggleContact}></div>
-      )}
-
-      {/* Contact 요소 */}
-      {isContactOpen && (
-        <div
-          id="contact-element"
-          className="fixed flex items-center justify-center p-4 z-50 transition-transform duration-300 ease-in-out max-w-sm mx-auto font-bold"
-          style={{ top: contactPosition.top, left: contactPosition.left }}
-          onClick={toggleContact}>
+        <>
           <div
-            className="bg-gradient-to-r from-green-700 via-green-500 to-green-300 p-6 rounded-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-125"
-            onClick={(e) => e.stopPropagation()}>
-            <ul className="space-y-4">
-              <li>
-                <a
-                  href="mailto:ezfuzzy052@gmail.com"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="text-black hover:border-b-2 hover:border-white transition duration-300">
-                  Email: ezfuzzy052@gmail.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/%EB%AF%BC%EC%A4%80-%EA%B9%80-92a27a32a/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="text-black hover:border-b-2 hover:border-white transition duration-300">
-                  LinkedIn: ezfuzzy's LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/ezfuzzy"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="text-black hover:border-b-2 hover:border-white transition duration-300">
-                  GitHub: https://github.com/ezfuzzy
-                </a>
-              </li>
-            </ul>
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out"
+            onClick={toggleContact}></div>
+          <div
+            id="contact-element"
+            className="fixed flex items-center justify-center p-4 z-50 transition-transform duration-300 ease-in-out max-w-sm mx-auto font-bold"
+            style={{ top: contactPosition.top, left: contactPosition.left }}
+            onClick={toggleContact}>
+            <div
+              className="bg-gradient-to-r from-green-700 via-green-500 to-green-300 p-6 rounded-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-125"
+              onClick={(e) => e.stopPropagation()}>
+              <ul className="space-y-4">
+                {myContactList.map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href={item.href}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="text-black hover:border-b-2 hover:border-white transition duration-300">
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   )
