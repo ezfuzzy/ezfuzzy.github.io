@@ -58,13 +58,7 @@ const Career = () => {
                 <span className="font-semibold">{category.charAt(0).toUpperCase() + category.slice(1)}:</span>
                 <span className="flex items-center space-x-2 mt-2">
                   {items.map((item) => (
-                    <img
-                      key={item.alt}
-                      src={item.src}
-                      alt={item.alt}
-                      className="w-12 h-12"
-                      title={item.title}
-                    />
+                    <img key={item.alt} src={item.src} alt={item.alt} className="w-12 h-12" title={item.title} />
                   ))}
                 </span>
               </li>
@@ -167,6 +161,18 @@ const Career = () => {
                         rel="noopener noreferrer"
                         className="font text-blue-700">
                         {selectedProject.link2}
+                      </a>
+                    </div>
+                  )}
+                  {selectedProject.pdf && (
+                    <div className="mb-2">
+                      <span>PDF: </span>
+                      <a
+                        href={selectedProject.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font text-blue-700">
+                        {selectedProject.pdf}
                       </a>
                     </div>
                   )}
