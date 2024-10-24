@@ -172,7 +172,7 @@ const Career = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font text-blue-700">
-                        {selectedProject.pdf}
+                        [{selectedProject.title}.pdf]
                       </a>
                     </div>
                   )}
