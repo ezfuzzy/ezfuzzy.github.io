@@ -62,7 +62,7 @@ export const projectList = [
     period: "2024.08 ~ 2024.10",
     link1: "https://github.com/ezfuzzy/tripDuo",
     link2: "https://tripduo.xyz",
-    pdf: "",
+    pdf: "https://drive.google.com/file/d/1Dsih-uKhJNVcE2iztHUO7eEZtWJ_KJ4Q/view?usp=drive_link",
     image: "/images/projects/tripDuo-logo.png",
     description: "여행 메이트를 구하거나 여행에 대한 정보를 공유하는 서비스",
     technologies: ["Spring", "React", "PostgreSQL"],
