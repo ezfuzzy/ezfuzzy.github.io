@@ -7,6 +7,7 @@ import TicTacToe from "../pages/apps/sockets/tic-tac-toe/Tictactoe"
 import MemorySimulator from "../pages/apps/simulators/memory-simulator/MemorySimulator"
 import KakaoMap from "../pages/apps/simulators/map-api/KakaoMap"
 import Career from "../pages/projects/Career"
+import SearchByIndstrytyCd from "../pages/apps/bid/g2b/SearchByIndstrytyCd"
 
 const routes = [
   { path: "/", element: <Home /> },
@@ -20,6 +21,7 @@ const routes = [
   { path: "/graph-visualizer", element: <GraphVisualizer /> },
   { path: "/memory-simulator", element: <MemorySimulator /> },
   { path: "/kakao-map", element: <KakaoMap /> },
+  { path: "/bid-flow", element: <SearchByIndstrytyCd /> },
 ]
 
 const router = createHashRouter([

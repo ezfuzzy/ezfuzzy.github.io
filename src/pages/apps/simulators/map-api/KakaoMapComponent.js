@@ -29,7 +29,7 @@ const CourseKakaoMapComponent = ({ onSave, selectedDayIndex, selectedPlaceIndex,
       })
     }
 
-    console.log(process.env.REACT_APP_KAKAO_MAP_API_KEY)
+    // console.log(process.env.REACT_APP_KAKAO_MAP_API_KEY)
 
     const script = document.createElement("script")
     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_API_KEY}&autoload=false&libraries=services`
@@ -156,8 +156,7 @@ const CourseKakaoMapComponent = ({ onSave, selectedDayIndex, selectedPlaceIndex,
     map.setLevel(5)
     const marker = markers.find(
       (marker) =>
-        marker.getPosition().getLat().toFixed(10) === place.position.getLat().toFixed(10) &&
-        marker.getPosition().getLng().toFixed(10) === place.position.getLng().toFixed(10)
+        marker.getPosition().getLat().toFixed(10) === place.position.getLat().toFixed(10) && marker.getPosition().getLng().toFixed(10) === place.position.getLng().toFixed(10)
     )
 
     const infoWindow = infoWindows[markers.indexOf(marker)]
@@ -176,10 +175,7 @@ const CourseKakaoMapComponent = ({ onSave, selectedDayIndex, selectedPlaceIndex,
 
   return (
     <div className="flex w-full h-full overflow-hidden">
-      <div
-        ref={mapRef}
-        className="flex-grow mb-4"
-        style={{ width: "100%", height: "70vh" }}></div>
+      <div ref={mapRef} className="flex-grow mb-4" style={{ width: "100%", height: "70vh" }}></div>
 
       <div className="flex flex-col space-y-2 p-6 bg-white border-l border-gray-200 rounded-lg shadow-md w-1/3">
         <div className="flex space-x-2">

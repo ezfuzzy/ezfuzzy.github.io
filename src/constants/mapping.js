@@ -53,6 +53,12 @@ export const appList = [
     alt: "Another Simulator Thumbnail",
     title: "Another Simulator",
   },
+  {
+    to: "/bid-flow",
+    img: "/images/dummy/ezfz.png",
+    alt: "Bid FLow Thumbnail",
+    title: "Bid Flow",
+  },
 ]
 
 export const projectList = [
@@ -66,8 +72,7 @@ export const projectList = [
     image: "/images/projects/tripDuo-logo.png",
     description: "여행 메이트를 구하거나 여행에 대한 정보를 공유하는 서비스",
     technologies: ["Spring", "React", "PostgreSQL"],
-    details:
-      "tripDuo는 여행 메이트를 구하거나 여행에 대한 정보를 공유하는 서비스입니다. 사용자는 여행 계획을 공유하고, 메이트를 구하며, 여행 정보를 쉽게 찾을 수 있습니다.",
+    details: "tripDuo는 여행 메이트를 구하거나 여행에 대한 정보를 공유하는 서비스입니다. 사용자는 여행 계획을 공유하고, 메이트를 구하며, 여행 정보를 쉽게 찾을 수 있습니다.",
   },
   {
     id: 2,
