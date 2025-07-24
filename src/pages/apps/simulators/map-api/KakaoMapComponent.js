@@ -30,7 +30,7 @@ const CourseKakaoMapComponent = ({ onSave, selectedDayIndex, selectedPlaceIndex,
     }
 
     // console.log(process.env.REACT_APP_KAKAO_MAP_API_KEY)
-
+    console.log("map load")
     const script = document.createElement("script")
     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_API_KEY}&autoload=false&libraries=services`
     script.async = false // 스크립트 비동기 로드
